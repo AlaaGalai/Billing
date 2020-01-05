@@ -1,0 +1,17 @@
+### Java Class Files ###
+*.class
+
+### Build Files ###
+build/
+
+### Gradle ###
+.gradle
+
+### Directories ###
+bin/
+
+### IDE ###
+.settings
+.vscode
+.classpath
+.project

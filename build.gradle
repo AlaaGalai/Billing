@@ -1,0 +1,55 @@
+plugins{
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '2.0.4'
+}
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.apache.derby', name: 'derby', version: '10.14.2.0'
+
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.1'
+
+    // https://mvnrepository.com/artifact/javax.activation/activation
+    implementation group: 'javax.activation', name: 'activation', version: '1.1.1'
+
+    // https://mvnrepository.com/artifact/org.apache.clerezza.ext/org.json.simple
+    implementation group: 'org.apache.clerezza.ext', name: 'org.json.simple', version: '0.4'
+
+    // https://mvnrepository.com/artifact/com.sun.mail/javax.mail
+    implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.0'
+
+
+    shadow group: 'org.apache.derby', name: 'derby', version: '10.14.2.0'
+
+    // https://mvnrepository.com/artifact/javax.mail/javax.mail-api
+    shadow group: 'javax.mail', name: 'javax.mail-api', version: '1.6.1'
+
+    // https://mvnrepository.com/artifact/javax.activation/activation
+    shadow group: 'javax.activation', name: 'activation', version: '1.1.1'
+
+    // https://mvnrepository.com/artifact/org.apache.clerezza.ext/org.json.simple
+    shadow group: 'org.apache.clerezza.ext', name: 'org.json.simple', version: '0.4'
+
+    // https://mvnrepository.com/artifact/com.sun.mail/javax.mail
+    shadow group: 'com.sun.mail', name: 'javax.mail', version: '1.6.0'
+
+}
+
+task projectJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Billing System', 'Implementation-Version': version, 'Main-Class': 'com.bbloggsbott.billingsystem.Main'
+    }
+}
+
+shadowJar{
+    baseName = 'BillingSystem'
+    version = '1.0'
+    manifest{
+        inheritFrom project.tasks.projectJar.manifest
+    }
+}
